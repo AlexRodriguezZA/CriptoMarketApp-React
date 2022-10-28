@@ -1,0 +1,72 @@
+.Formulario-container{
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    height: 250px;
+    
+}
+.formulario-titulo{
+    
+    margin-top: 40px;
+
+}
+.formulario{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+}
+
+.select-modena-convetir{
+    width: 100px;
+    height: 25px;
+    border-radius: 5px;
+    box-shadow: 1px 10px 25px -9px rgba(0,0,0,0.75);
+
+    border-style: none;
+    cursor: pointer;
+}
+
+
+
+.select-modena-cripto{
+    width: 150px;
+    height: 25px;
+    border-radius: 5px;
+    box-shadow: 1px 10px 25px -9px rgba(0,0,0,0.75);
+    cursor: pointer;
+
+
+    border-style: none;
+}
+
+option{
+    text-align: center;
+    
+}
+
+.button-submit{
+    margin-top: 50px;
+    height: 30px;
+    border-radius: 20px;
+    background-color: rgb(2, 148, 51);
+    border-style: none;
+    transition: all .2s;
+    color: aliceblue;
+    font-weight: 700;
+
+    
+}
+.button-submit:hover{
+    background-color: rgb(2, 179, 61);
+    cursor: pointer;
+
+    
+}
+@media (max-width: 600px) {
+    .Formulario-container{
+        width: 90%;
+    }
+  }

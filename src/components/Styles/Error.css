@@ -1,0 +1,23 @@
+.error-container{
+    margin-top: 15px;
+    background-color: rgb(209, 114, 114);
+    color: rgb(0, 0, 0);
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    gap: 20px;
+    border-radius: 10px;
+
+}
+
+.icon-error{
+    background-color: black;
+}
+
+@media (max-width: 600px) {
+    .error-container{
+        width: 90%;
+    }
+  }
