@@ -1,14 +1,13 @@
-import React from 'react'
+import React from "react";
 import { BsFillExclamationCircleFill } from "react-icons/bs";
-import "./Styles/Error.css"
 
 const Error = () => {
   return (
-    <div className='error-container'>
-        <BsFillExclamationCircleFill />
-        Cargue todos los datos por favor
+    <div className="bg-red-500 text-white px-5 text-xl flex justify-center items-center gap-2 rounded-lg" >
+      <BsFillExclamationCircleFill />
+      Cargue todos los datos por favor
     </div>
-  )
-}
+  );
+};
 
-export default Error
+export default Error;

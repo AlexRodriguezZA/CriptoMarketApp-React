@@ -1,78 +1,72 @@
-import './App.css'
+//Componentes
+import Header from "./components/Header";
+import Formulario from "./components/Formulario";
+import { useState, useEffect } from "react";
+import ImagenCoin from "../src/assets/Bitcoin.svg";
+import SidebarHistory from "./components/SidebarHistory";
 
-import Header from './components/Header'
-import Formulario from './components/Formulario'
-import Data from './components/Data'
-import { useState,useEffect } from 'react'
 
+//Funciones
+import { ConsultarMonedas } from "./utils/CriptomonedasFetch";
+import { cotizarCripto } from "./utils/fetchCotizador";
+import Data from "./components/Data";
 
 function App() {
-
-  const [CotizacionMoneda, setCotizacionMoneda] = useState({})
-  const [dataCotizacion , setdataCotizacion] = useState()
-  const [Criptoinfo, setCriptoinfo] = useState()
-  const [NombreCripto, setNombreCripto] = useState("")
+  const [CotizacionMoneda, setCotizacionMoneda] = useState({});
+  const [dataCotizacion, setdataCotizacion] = useState();
+  const [Criptoinfo, setCriptoinfo] = useState();
+  const [NombreCripto, setNombreCripto] = useState("");
 
   useEffect(() => {
-    if (Object.keys(CotizacionMoneda).length>0) { //VERIFICAMOS QUE HAYA DATOS EN EL OBJETO QUE TRAEMOS EN EL FORMULARIO
-      const {moneda, cripto} = CotizacionMoneda; //Destructuramos el objeto
-      setNombreCripto(cripto)
+    if (Object.keys(CotizacionMoneda).length > 0) {
+      //VERIFICAMOS QUE HAYA DATOS EN EL OBJETO QUE TRAEMOS EN EL FORMULARIO
+      const { moneda, cripto } = CotizacionMoneda; //Destructuramos el objeto
+      setNombreCripto(cripto);
 
-
-//////////////////////////////////////////////////////////////////////////////
-      const cotizarCripto = async () =>{
-        const url = `https://min-api.cryptocompare.com/data/price?fsym=${cripto}&tsyms=${moneda}`;
-        const respuesta = await fetch(url);
-        const resultado = await respuesta.json();
-
+      //////////////////////////////////////////////////////////////////////////////
+      const Cotizador = async () => {
+        const resultado = await cotizarCripto(cripto, moneda);
         setdataCotizacion(resultado);
+      };
 
-      }
-      
-      cotizarCripto()
+      Cotizador();
 
-
-
-////////////////////////////////////////////////////////////////7    
+      ////////////////////////////////////////////////////////////////7
       const consultarAPI = async () => {
-        const url = "https://min-api.cryptocompare.com/data/top/mktcapfull?limit=20&tsym=USD";
-        const respuesta = await fetch(url)
-        const resultado = await respuesta.json();
-
-        resultado.Data.filter(criptomoneda => {
-          if(criptomoneda.CoinInfo.Name === cripto){
-            setCriptoinfo(criptomoneda.DISPLAY.USD)
+        const resultado = await ConsultarMonedas();
+        resultado.Data.filter((criptomoneda) => {
+          if (criptomoneda.CoinInfo.Name === cripto) {
+            console.log(criptomoneda)
+            setCriptoinfo(criptomoneda.DISPLAY.USD);
           }
-            
-        })
-      }
+        });
+      };
 
-      consultarAPI()
-  
+      consultarAPI();
     }
-    
-  }, [CotizacionMoneda])
-
-
-
+  }, [CotizacionMoneda]);
 
   return (
-    <div className="container">
-      
-     <Header/>
-     <div className='data-container'>
-      <Formulario  setCotizacionMoneda={setCotizacionMoneda}/>
+    <div className="w-full flex flex-col h-screen justify-center items-center">
+      <SidebarHistory/>
+      <Header />
+      <div className="flex flex-col items-center">
+        <Formulario setCotizacionMoneda={setCotizacionMoneda} />
 
-
-      {dataCotizacion && <Data 
-                          dataCotizacion={dataCotizacion} 
-                          Criptoinfo={Criptoinfo} 
-                          NombreCripto={NombreCripto}/>}
-     </div>
-     
-
+        {dataCotizacion ? (
+          <Data
+            dataCotizacion={dataCotizacion}
+            Criptoinfo={Criptoinfo}
+            NombreCripto={NombreCripto}
+          />
+        ) : (
+          <div className="mt-20 w-full flex justify-center">
+            <img className="w-4/5" src={ImagenCoin} />
+          </div>
+        )}
+      </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

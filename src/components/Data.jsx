@@ -1,34 +1,50 @@
-import React from 'react'
-import eeuu from "../assets/banderas/estados-unidos.png"
-import arg from "../assets/banderas/argentina.png"
+import wave from "../assets/wave.svg";
 
-import "./Styles/Data.css"
-
-const Data = ({dataCotizacion,Criptoinfo,NombreCripto}) => {
-  
+const Data = ({ dataCotizacion, Criptoinfo, NombreCripto }) => {
   //Con esto validamos el tipo de moneda la cual es seleccionada por el usuario en el formulario
 
-  const validadorMoneda = Object.keys(dataCotizacion)
-  
+  const validadorMoneda = Object.keys(dataCotizacion);
+
   return (
-    <div className='card-container'>
-        <h2 className='Nombre-cripto'>{NombreCripto}</h2>
-        <section className='detalles-container'>
-            
-            <p>Cotización hoy: {Criptoinfo.PRICE} </p>
-            <p>Precio más alto: {Criptoinfo.HIGHDAY} </p>
-            <p>Precio más bajo: {Criptoinfo.LOWDAY} </p>
-            <p>Variación últimas 24hrs: {Criptoinfo.CHANGE24HOUR} </p>
+    <div className="mt-5 shadow-2xl border-2 flex flex-col items-center bg-white w-80 rounded-xl">
+      <section className="mt-5 w-full flex flex-col items-center justify-center">
+        <h2 className="text-xl font-bold">{NombreCripto}</h2>
+        {validadorMoneda[0] === "ARS" ? (
+          <p className="mt-2 text-slate-800">🇦🇷 ARS ~ ${dataCotizacion.ARS}</p>
+        ) : (
+          <p className="mt-2">🇺🇸 USD ~ ${dataCotizacion.USD}</p>
+        )}
+      </section>
+      <img className="w-full" src={wave} alt="" />
 
-          
-            { validadorMoneda[0] === "ARS" ? <p>Precio en ARS <img src={arg} alt="" /> ${dataCotizacion.ARS}</p> 
-            : <p>Precio en USD <img src={eeuu} alt="" /> ${dataCotizacion.USD}</p>}
-
-
-        </section>
-
+      <section className="w-full rounded-b-xl bg-blue-700 flex flex-col items-center gap-10">
+        <p className="text-lg text-white">
+          Cotización hoy:{" "}
+          <span className="text-green-400 ml-1">{Criptoinfo.PRICE} </span>
+        </p>
+        <p className="text-lg text-white">
+          Precio más alto:{" "}
+          <span className="text-green-400 ml-1">{Criptoinfo.HIGHDAY} </span>
+        </p>
+        <p className="text-lg text-white">
+          Precio más bajo:{" "}
+          <span className="text-green-400 ml-1">{Criptoinfo.LOWDAY}</span>{" "}
+        </p>
+        <p className="text-lg text-white mb-3">
+          Variación últimas 24hrs:{" "}
+          <span
+            className={` ${
+              Criptoinfo.CHANGE24HOUR.includes("-")
+                ? "text-red-700"
+                : "text-green-400"
+            } ml-1`}
+          >
+            {Criptoinfo.CHANGE24HOUR}
+          </span>{" "}
+        </p>
+      </section>
     </div>
-  )
-}
+  );
+};
 
-export default Data
+export default Data;
