@@ -1,10 +1,25 @@
 import historyIcon from "../assets/historyIcon.svg";
 import ListItem from "./ListItem";
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
+import { useLocalStorage } from "../context/LocalStorage";
 
 const SidebarHistory = () => {
   const [open, setOpen] = useState(false);
+  const [Refresh, setRefresh] = useState(false);
+  const { addToHistory, getHistory, deleteHistory } = useLocalStorage();
+
+  const history = getHistory();
+
+  const handleDeleteHistory = () => {
+    deleteHistory();
+    setRefresh(true);
+  };
+
+  useEffect(() => {
+    setRefresh(false);
+  }, [Refresh]);
+
+  console.log("renderizar");
 
   return (
     <div
@@ -17,8 +32,8 @@ const SidebarHistory = () => {
         className={`absolute rounded-full cursor-pointer -right-3 top-9 w-7 
              border-2 border-black ${!open && "rotate-180"}`}
         onClick={() => setOpen(!open)}
-        
       />
+
       <div className="flex gap-x-4 items-center justify-center">
         <h1
           className={`text-white origin-left font-medium text-xl duration-200 ${
@@ -29,19 +44,20 @@ const SidebarHistory = () => {
         </h1>
       </div>
       <ul className="pt-6">
-       
-      <ListItem open={open}/>
-      <ListItem open={open}/>
-
-      <ListItem open={open}/>
-      <ListItem open={open}/>
-      <ListItem open={open}/>
-
+        {history &&
+          history.map((item, index) => (
+            <ListItem key={index} open={open} objectItem={item} />
+          ))}
       </ul>
 
-      <button className={`text-white origin-left font-medium text-md duration-200 ${
-            !open && "scale-0"
-          }`}>Delete</button>
+      <button
+        className={`text-white origin-left font-medium text-md duration-200 ${
+          !open && "scale-0"
+        }`}
+        onClick={() => handleDeleteHistory()}
+      >
+        Delete
+      </button>
     </div>
   );
 };

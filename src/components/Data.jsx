@@ -2,11 +2,10 @@ import wave from "../assets/wave.svg";
 
 const Data = ({ dataCotizacion, Criptoinfo, NombreCripto }) => {
   //Con esto validamos el tipo de moneda la cual es seleccionada por el usuario en el formulario
-
-  const validadorMoneda = Object.keys(dataCotizacion);
-
+  console.log(Criptoinfo)
+  const validadorMoneda = Object.keys(Criptoinfo);
   return (
-    <div className="mt-5 shadow-2xl border-2 flex flex-col items-center bg-white w-80 rounded-xl">
+    <div className="mt-5 shadow-2xl border-2 flex flex-col items-center bg-white w-96 rounded-xl">
       <section className="mt-5 w-full flex flex-col items-center justify-center">
         <h2 className="text-xl font-bold">{NombreCripto}</h2>
         {validadorMoneda[0] === "ARS" ? (
@@ -17,32 +16,65 @@ const Data = ({ dataCotizacion, Criptoinfo, NombreCripto }) => {
       </section>
       <img className="w-full" src={wave} alt="" />
 
-      <section className="w-full rounded-b-xl bg-blue-700 flex flex-col items-center gap-10">
-        <p className="text-lg text-white">
-          Cotización hoy:{" "}
-          <span className="text-green-400 ml-1">{Criptoinfo.PRICE} </span>
-        </p>
-        <p className="text-lg text-white">
-          Precio más alto:{" "}
-          <span className="text-green-400 ml-1">{Criptoinfo.HIGHDAY} </span>
-        </p>
-        <p className="text-lg text-white">
-          Precio más bajo:{" "}
-          <span className="text-green-400 ml-1">{Criptoinfo.LOWDAY}</span>{" "}
-        </p>
-        <p className="text-lg text-white mb-3">
-          Variación últimas 24hrs:{" "}
-          <span
-            className={` ${
-              Criptoinfo.CHANGE24HOUR.includes("-")
-                ? "text-red-700"
-                : "text-green-400"
-            } ml-1`}
-          >
-            {Criptoinfo.CHANGE24HOUR}
-          </span>{" "}
-        </p>
-      </section>
+      {validadorMoneda[0] === "ARS" ? (
+        <section className="w-full rounded-b-xl bg-blue-700 flex flex-col items-center gap-10">
+          <p className="text-lg text-white">
+            Cotización hoy:{" "}
+            <span className="text-green-400 ml-1">{Criptoinfo.ARS.PRICE}</span>
+          </p>
+          <p className="text-lg text-white">
+            Precio más alto:{" "}
+            <span className="text-green-400 ml-1">
+              {Criptoinfo.ARS.HIGHDAY}{" "}
+            </span>
+          </p>
+          <p className="text-lg text-white">
+            Precio más bajo:{" "}
+            <span className="text-green-400 ml-1">{Criptoinfo.ARS.LOWDAY}</span>{" "}
+          </p>
+          <p className="text-lg text-white mb-3">
+            Variación últimas 24hrs:{" "}
+            <span
+              className={` ${
+                Criptoinfo.ARS.CHANGE24HOUR.includes("-")
+                  ? "text-red-700"
+                  : "text-green-400"
+              } ml-1`}
+            >
+              {Criptoinfo.ARS.CHANGE24HOUR}
+            </span>{" "}
+          </p>
+        </section>
+      ) : (
+        <section className="w-full rounded-b-xl bg-blue-700 flex flex-col items-center gap-10">
+          <p className="text-lg text-white">
+            Cotización hoy:{" "}
+            <span className="text-green-400 ml-1">{Criptoinfo.USD.PRICE} </span>
+          </p>
+          <p className="text-lg text-white">
+            Precio más alto:{" "}
+            <span className="text-green-400 ml-1">
+              {Criptoinfo.USD.HIGHDAY}{" "}
+            </span>
+          </p>
+          <p className="text-lg text-white">
+            Precio más bajo:{" "}
+            <span className="text-green-400 ml-1">{Criptoinfo.USD.LOWDAY}</span>{" "}
+          </p>
+          <p className="text-lg text-white mb-3">
+            Variación últimas 24hrs:{" "}
+            <span
+              className={` ${
+                Criptoinfo.USD.CHANGE24HOUR.includes("-")
+                  ? "text-red-700"
+                  : "text-green-400"
+              } ml-1`}
+            >
+              {Criptoinfo.USD.CHANGE24HOUR}
+            </span>{" "}
+          </p>
+        </section>  
+      )}
     </div>
   );
 };

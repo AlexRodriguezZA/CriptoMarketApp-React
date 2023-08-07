@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Option = () => {
+const Option = ({criptomoneda}) => {
   return (
-    <option>
-
+    <option value={criptomoneda.id}>
+      {criptomoneda.nombre}
     </option>
   )
 }

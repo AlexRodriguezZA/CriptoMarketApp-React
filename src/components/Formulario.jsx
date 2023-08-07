@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Error from "./Error";
-
+import Option from "./Option";
 
 import { ConsultarMonedas } from "../utils/CriptomonedasFetch";
 
@@ -95,9 +95,7 @@ const Formulario = ({ setCotizacionMoneda }) => {
             <option value="QNT">Quant</option>
             <option value="TRX">TRON</option> */}
             {CriptoMonedas.map((criptomoneda) => (
-              <option key={uuidv4()} value={criptomoneda.id}>
-                {criptomoneda.nombre}
-              </option>
+              <Option key={uuidv4()} criptomoneda={criptomoneda}/>
             ))}
           </select>
         </div>

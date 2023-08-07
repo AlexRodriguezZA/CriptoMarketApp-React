@@ -10,19 +10,25 @@ import SidebarHistory from "./components/SidebarHistory";
 import { ConsultarMonedas } from "./utils/CriptomonedasFetch";
 import { cotizarCripto } from "./utils/fetchCotizador";
 import Data from "./components/Data";
+import { useLocalStorage } from "./context/LocalStorage";
+import { CrearObjetoHistorial } from "./utils/CrearObjetoHistorial";
 
 function App() {
   const [CotizacionMoneda, setCotizacionMoneda] = useState({});
   const [dataCotizacion, setdataCotizacion] = useState();
   const [Criptoinfo, setCriptoinfo] = useState();
   const [NombreCripto, setNombreCripto] = useState("");
+  const { addToHistory, getHistory } = useLocalStorage();
+
 
   useEffect(() => {
     if (Object.keys(CotizacionMoneda).length > 0) {
       //VERIFICAMOS QUE HAYA DATOS EN EL OBJETO QUE TRAEMOS EN EL FORMULARIO
       const { moneda, cripto } = CotizacionMoneda; //Destructuramos el objeto
       setNombreCripto(cripto);
-
+      //Guardamos el historial en el local storage
+      const HistorialItem = CrearObjetoHistorial(cripto, moneda)
+      addToHistory(HistorialItem)
       //////////////////////////////////////////////////////////////////////////////
       const Cotizador = async () => {
         const resultado = await cotizarCripto(cripto, moneda);
@@ -33,11 +39,10 @@ function App() {
 
       ////////////////////////////////////////////////////////////////7
       const consultarAPI = async () => {
-        const resultado = await ConsultarMonedas();
+        const resultado = await ConsultarMonedas(moneda);
         resultado.Data.filter((criptomoneda) => {
           if (criptomoneda.CoinInfo.Name === cripto) {
-            console.log(criptomoneda)
-            setCriptoinfo(criptomoneda.DISPLAY.USD);
+            setCriptoinfo(criptomoneda.DISPLAY);
           }
         });
       };
