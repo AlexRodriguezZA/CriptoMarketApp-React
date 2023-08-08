@@ -61,9 +61,9 @@ const Formulario = ({ setCotizacionMoneda }) => {
   return (
     <>
       {error && <Error />}
-      <form className="flex gap-4 mt-10" onSubmit={handleSubmit} action="">
+      <form className="flex flex-col gap-2 md:flex md:flex-row md:gap-4 mt-10" onSubmit={handleSubmit} action="">
         <div className="flex gap-4">
-          <select className="bg-slate-300 px-3 py-1 rounded-md" onChange={handleMoneda}>
+          <select className="bg-slate-300 px-1 py-1 md:px-3 md:py-1 rounded-md" onChange={handleMoneda}>
             <option value="" selected={true} disabled="disabled">
               MONEDA
             </option>

@@ -52,7 +52,7 @@ function App() {
   }, [CotizacionMoneda]);
 
   return (
-    <div className="w-full flex flex-col h-screen justify-center items-center">
+    <div className="w-full flex flex-col h-screen md:justify-center items-center">
       <SidebarHistory/>
       <Header />
       <div className="flex flex-col items-center">
@@ -66,7 +66,7 @@ function App() {
           />
         ) : (
           <div className="mt-20 w-full flex justify-center">
-            <img className="w-4/5" src={ImagenCoin} />
+            <img className="w-96" src={ImagenCoin} />
           </div>
         )}
       </div>

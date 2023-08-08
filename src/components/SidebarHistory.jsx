@@ -25,11 +25,11 @@ const SidebarHistory = () => {
     <div
       className={` ${
         open ? "w-72 bg-blue-700" : "w-2 "
-      } bg-blue-700 h-screen p-5 absolute left-0 duration-300`}
+      } h-screen p-5 absolute left-0 duration-300 md:bg-blue-700`}
     >
       <img
         src={historyIcon}
-        className={`absolute rounded-full cursor-pointer -right-3 top-9 w-7 
+        className={`absolute rounded-full cursor-pointer -right-1 top-3 w-7 
              border-2 border-black ${!open && "rotate-180"}`}
         onClick={() => setOpen(!open)}
       />
