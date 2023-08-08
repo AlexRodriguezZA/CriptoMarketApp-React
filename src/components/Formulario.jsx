@@ -74,25 +74,6 @@ const Formulario = ({ setCotizacionMoneda }) => {
             <option selected={true} disabled>
               CRIPTOMONEDA
             </option>
-            {/* <option value="BTC">Bitcoin</option>
-            <option value="ETH">Ethereum</option>
-            <option value="USDT">Tether</option>
-            <option value="BNB">Binance Coin</option>
-            <option value="XRP">XRP</option>
-            <option value="USDC">USD Coin</option>
-            <option value="BUSD">BUSD</option>
-            <option value="SOL">Solana</option>
-            <option value="ADA">Cardano</option>
-            <option value="DOGE">DOGE</option>
-            <option value="MATIC">Polygon</option>
-            <option value="APT">Aptos</option>
-            <option value="DOT">Polkadot</option>
-            <option value="FTT">FTX Token</option>
-            <option value="AVAX">Avalanche</option>
-            <option value="LINK">Chainlink</option>
-            <option value="SHIB">Shiba Inu</option>
-            <option value="QNT">Quant</option>
-            <option value="TRX">TRON</option> */}
             {CriptoMonedas.map((criptomoneda) => (
               <Option key={criptomoneda.id} criptomoneda={criptomoneda}/>
             ))}
