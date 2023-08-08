@@ -19,12 +19,11 @@ const SidebarHistory = () => {
     setRefresh(false);
   }, [Refresh]);
 
-  console.log("renderizar");
 
   return (
     <div
       className={` ${
-        open ? "w-72 bg-blue-700" : "w-2 "
+        open ? "w-72 bg-blue-700" : "w-1 "
       } h-screen p-5 absolute left-0 duration-300 md:bg-blue-700`}
     >
       <img

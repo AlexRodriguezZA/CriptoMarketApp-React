@@ -5,7 +5,7 @@ const Data = ({ dataCotizacion, Criptoinfo, NombreCripto }) => {
   console.log(Criptoinfo)
   const validadorMoneda = Object.keys(Criptoinfo);
   return (
-    <div className="md:mt-5 w-80 shadow-2xl border-2 flex flex-col items-center rounded-xl bg-white md:w-96 ">
+    <div className="mt-5 md:mt-5 w-80 shadow-2xl border-2 flex flex-col items-center rounded-xl bg-white md:w-96 ">
       <section className="mt-5 w-full flex flex-col items-center justify-center">
         <h2 className="text-xl font-bold">{NombreCripto}</h2>
         {validadorMoneda[0] === "ARS" ? (
