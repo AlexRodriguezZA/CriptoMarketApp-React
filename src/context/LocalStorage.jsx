@@ -8,7 +8,6 @@ const LocalStorageProvider = ({ children }) => {
     return storedData ? JSON.parse(storedData) : [];
   });
 
-  // Save data to local storage whenever it changes
   useEffect(() => {
     localStorage.setItem('HistorialItem', JSON.stringify(history));
   }, [history]);

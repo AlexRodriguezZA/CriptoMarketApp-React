@@ -1,6 +1,5 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 import Error from "./Error";
 import Option from "./Option";
 
@@ -72,7 +71,7 @@ const Formulario = ({ setCotizacionMoneda }) => {
           </select>
 
           <select className="bg-slate-300 px-3 py-1 rounded-md" onChange={handleCripto}>
-            <option value="" selected={true} disabled="disabled">
+            <option selected={true} disabled>
               CRIPTOMONEDA
             </option>
             {/* <option value="BTC">Bitcoin</option>
@@ -95,7 +94,7 @@ const Formulario = ({ setCotizacionMoneda }) => {
             <option value="QNT">Quant</option>
             <option value="TRX">TRON</option> */}
             {CriptoMonedas.map((criptomoneda) => (
-              <Option key={uuidv4()} criptomoneda={criptomoneda}/>
+              <Option key={criptomoneda.id} criptomoneda={criptomoneda}/>
             ))}
           </select>
         </div>
