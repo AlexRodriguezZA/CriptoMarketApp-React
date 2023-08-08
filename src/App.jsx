@@ -18,7 +18,7 @@ function App() {
   const [dataCotizacion, setdataCotizacion] = useState();
   const [Criptoinfo, setCriptoinfo] = useState();
   const [NombreCripto, setNombreCripto] = useState("");
-  const { addToHistory, getHistory } = useLocalStorage();
+  const { addToHistory } = useLocalStorage();
 
 
   useEffect(() => {
@@ -58,7 +58,7 @@ function App() {
       <div className="flex flex-col items-center">
         <Formulario setCotizacionMoneda={setCotizacionMoneda} />
 
-        {dataCotizacion ? (
+        {dataCotizacion && Criptoinfo ? (
           <Data
             dataCotizacion={dataCotizacion}
             Criptoinfo={Criptoinfo}

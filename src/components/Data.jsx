@@ -2,10 +2,9 @@ import wave from "../assets/wave.svg";
 
 const Data = ({ dataCotizacion, Criptoinfo, NombreCripto }) => {
   //Con esto validamos el tipo de moneda la cual es seleccionada por el usuario en el formulario
-  console.log(Criptoinfo)
   const validadorMoneda = Object.keys(Criptoinfo);
   return (
-    <div className="mt-5 md:mt-5 w-80 shadow-2xl border-2 flex flex-col items-center rounded-xl bg-white md:w-96 ">
+    <div className="mt-5 md:mt-5 w-80 sm:w-96 shadow-2xl border-2 flex flex-col items-center rounded-xl bg-white md:w-96 ">
       <section className="mt-5 w-full flex flex-col items-center justify-center">
         <h2 className="text-xl font-bold">{NombreCripto}</h2>
         {validadorMoneda[0] === "ARS" ? (
@@ -62,7 +61,7 @@ const Data = ({ dataCotizacion, Criptoinfo, NombreCripto }) => {
             <span className="text-green-400 ml-1">{Criptoinfo.USD.LOWDAY}</span>{" "}
           </p>
           <p className="text-lg text-white mb-3">
-            Variación últimas 24hrs:{" "}
+            Var. últimas 24hrs:{" "}
             <span
               className={` ${
                 Criptoinfo.USD.CHANGE24HOUR.includes("-")

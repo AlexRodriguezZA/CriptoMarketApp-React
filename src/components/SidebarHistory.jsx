@@ -1,30 +1,24 @@
 import historyIcon from "../assets/historyIcon.svg";
 import ListItem from "./ListItem";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useLocalStorage } from "../context/LocalStorage";
 
 const SidebarHistory = () => {
   const [open, setOpen] = useState(false);
-  const [Refresh, setRefresh] = useState(false);
-  const { addToHistory, getHistory, deleteHistory } = useLocalStorage();
+  const {getHistory, deleteHistory } = useLocalStorage();
 
   const history = getHistory();
 
   const handleDeleteHistory = () => {
     deleteHistory();
-    setRefresh(true);
+    window.location.replace("")
   };
-
-  useEffect(() => {
-    setRefresh(false);
-  }, [Refresh]);
-
 
   return (
     <div
       className={` ${
-        open ? "w-72 bg-blue-700" : "w-1 "
-      } h-screen p-5 absolute left-0 duration-300 md:bg-blue-700`}
+        open ? "w-72 bg-blue-700" : "w-10 "
+      } h-screen p-5 absolute left-0 duration-300 md:bg-blue-700 `}
     >
       <img
         src={historyIcon}
